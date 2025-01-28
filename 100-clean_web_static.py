@@ -19,6 +19,7 @@ def do_pack():
     except:
         return None
 
+
 def do_deploy(archive_path):
     """distribute an archive to the webservers"""
     if (os.path.isfile(archive_path) is False):
@@ -26,7 +27,8 @@ def do_deploy(archive_path):
     try:
         put(archive_path, "/tmp/")
         archive_filename = archive_path.split("/")[-1]
-        new_path = ("/data/web_static/releases/" + archive_filename.split(".")[0])
+        new_path = ("/data/web_static/releases/" + archive_filename.
+                    split(".")[0])
         run("sudo tar -xzf /tmp/{} -C {}".format(archive_filename, new_path))
         run("sudo rm /tmp/{}".format(archive_filename))
         run("sudo mkdir -p {}".format(new_path))
@@ -38,12 +40,14 @@ def do_deploy(archive_path):
     except:
         return False
 
+
 def deploy():
     """full deployment: create and distribute archive to the web servers"""
     created_archive = do_pack()
     if created_archive is None:
         return False
     return (do_deploy(created_archive))
+
 
 def do_clean(number=0):
     """delete out-of-date archives"""
