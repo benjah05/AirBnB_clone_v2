@@ -14,10 +14,10 @@ def do_pack():
         if os.path.isdir("versions") is False:
             if local("mkdir -p versions").failed is True:
                 return None
-        if local("tar -cvzf /versions/web_static_{}.tgz /web_static".
+        if local("tar -cvzf /versions/web_static_{}.tgz web_static".
                  format(time_string)).failed is True:
             return None
-        return ("/versions/web_static_{}.tgz".format(time_string))
+        return ("versions/web_static_{}.tgz".format(time_string))
     except:
         return None
 
