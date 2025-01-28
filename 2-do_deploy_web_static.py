@@ -22,6 +22,7 @@ def do_deploy(archive_path):
         run("sudo rm -rf {}/web_static".format(new_path))
         run("sudo rm -rf /data/web_static/current")
         run("sudo ln -s {} /data/web_static/current".format(new_path))
+        run("sudo cp {}/web_static/hbnb_static/0-index.html /data/web_static/current/")
         return True
     except:
         return False
